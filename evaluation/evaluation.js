@@ -179,7 +179,7 @@ async function generateReport() {
       meets_requirement_8: hasFullCoverage,
       details: `Statements: ${implResults.coverage.statements}%, Branches: ${implResults.coverage.branches}%, Functions: ${implResults.coverage.functions}%, Lines: ${implResults.coverage.lines}%`
     },
-    implementation_tests: {
+    before_tests: {
       description: "Tests from repository_after running against repository_before/BillSplitter.js",
       passed: implResults.testResults.passed,
       failed: implResults.testResults.failed,
@@ -188,7 +188,7 @@ async function generateReport() {
       exit_code: implResults.exitCode,
       tests: implResults.testResults.tests
     },
-    meta_tests: {
+    after_tests: {
       description: "Meta-tests that ACTUALLY RUN splitBill to verify test correctness",
       passed: metaResults.testResults.passed,
       failed: metaResults.testResults.failed,
@@ -197,7 +197,6 @@ async function generateReport() {
       exit_code: metaResults.exitCode,
       tests: metaResults.testResults.tests
     },
-    requirements_checklist: requirements,
     final_verdict: {
       success: implResults.testResults.success && metaResults.testResults.success && hasFullCoverage,
       implementation_tests_passed: implResults.testResults.passed,
